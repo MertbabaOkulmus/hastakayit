@@ -1,0 +1,578 @@
+<template name= "bilgiler">
+  {{#if currentUser}}
+  <div class="sidebar" data-color="orange" data-background-color="black" data-image="../assets/img/mkside4.jpg" >
+    <div class="sidebar-wrapper">
+      <div class="logo text-center">
+        <img src="./img/logo.png" class="img-fluid" style="padding: 5px;" />
+      </div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/hastakayit">
+            <p style="font-size:18px;"> Hasta Kayıt</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/hastaarama">
+            <p style="font-size:18px;"> Hasta Bilgileri  </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link link-purple logout" style="font-size:18px;" href="#" id="logout-link"><i class="fa fa-sign-out">   </i>ÇIKIŞ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div >
+    <div class="content" >
+      <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+          <div class="col-3">
+          </div>
+          <div class=" form-horizontal col-md-6">
+            <div class="card ">
+              <div class="card-header card-header-warning card-header-icon">
+                <h4 class="card-title" style="background-color:#b0e5de5e; padding-top: 20px; padding-bottom: 20px;"><strong>Hasta Kişisel Bilgileri</strong></h4>
+              </div>
+              <div class="card-body ">
+                <table class="leaderboard">
+                  {{#EasySearch.Each index=index }}
+                  {{> User}}
+                  {{> duzenle}}
+                  {{/EasySearch.Each}}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+    <div class="row" style="justify-content: center;">
+      <div class="col-3">
+      </div>
+      <div class=" form-horizontal col-md-6 ">
+        <div class="card " style="height:63rem">
+          <div class="card-header card-header-warning card-header-icon">
+            <h4 class="card-title" style="background-color:#b0e5de5e; padding-top: 20px; padding-bottom: 20px;"><strong>Hasta Tedavi Bilgileri</strong></h4>
+          </div>
+          <div class="card-body ">
+            <table class="leaderboard">
+              {{#EasySearch.Each index=index }}
+              {{> yontem}}
+                {{> duzenle2}}
+              {{/EasySearch.Each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+          <div class="col-3">
+          </div>
+          <div class=" form-horizontal col-md-6 ">
+            <div class="card ">
+              <div class="card-header card-header-warning card-header-icon"  >
+                <h4 class="card-title" style="background-color:#b0e5de5e;"><strong>Hamilton Ölçek Puanı</strong></h4>
+              </div>
+              {{#EasySearch.Each index=index }}
+              {{> hamilton}}
+              {{/EasySearch.Each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+          <div class="col-3">
+          </div>
+          <div class=" form-horizontal col-md-6 ">
+            <div class="card ">
+              <div class="card-header card-header-warning card-header-icon" >
+                <h4 class="card-title" style="background-color:#b0e5de5e;"><strong>Montreal Ölçek Puanı</strong></h4>
+              </div>
+              {{#EasySearch.Each index=index }}
+              {{> montreal}}
+              {{/EasySearch.Each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+          <div class="col-3">
+          </div>
+          <div class=" form-horizontal col-md-6 ">
+            <div class="card ">
+              <div class="card-header card-header-warning card-header-icon" >
+                <h4 class="card-title" style="background-color:#b0e5de5e;"><strong>Montgomery Ölçek Puanı</strong></h4>
+              </div>
+              {{#EasySearch.Each index=index }}
+              {{> montgomery}}
+              {{/EasySearch.Each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+          <div class="col-3">
+          </div>
+          <div class=" form-horizontal col-md-6 ">
+            <div class="card ">
+              <div class="card-header card-header-warning card-header-icon" >
+                <h4 class="card-title" style="background-color:#b0e5de5e;"><strong>Beck Ölçek Puanı</strong></h4>
+              </div>
+              {{#EasySearch.Each index=index }}
+              {{> beck}}
+              {{/EasySearch.Each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</template>
+<template name="User">
+  <li class="hasta black {{selected}}" data-id="{{_id}}">
+    {{#if selected}}
+    <div class="row">
+      <div class="col-8">
+        <table class="table">
+          <tr>
+            <th scope="col">Ad:</th>
+            <th scope="col">{{name}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Soyad:</th>
+            <th scope="col">{{surname}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Cinsiyet:</th>
+            <th scope="col">{{gender}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Kangrubu:</th>
+            <th scope="col">{{bloodgroup}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Doğum Tarihi:</th>
+            <th scope="col">{{birthday}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Cep Telefonu:</th>
+            <th scope="col">{{phonenumber}}</th>
+          </tr>
+          <tr>
+            <th scope="col">E-mail:</th>
+            <th scope="col">{{email}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Hasta Yakın Adı Soyadı:</th>
+            <th scope="col">{{closename}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Hasta Yakın Telefonu:</th>
+            <th scope="col">{{closephonenumber}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Alerjiler:</th>
+            <th scope="col">{{allergies}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Komorbit Rahatsızlıkları: </th>
+            <th scope="col">{{comorbid}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Komorbid Rahatsızlıklar İçin Kullanılan Etken Maddeler:</th>
+            <th scope="col">{{comorbidfactormedicine}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Psikolojik Tedaviler İçin Kullanılan Etken Maddeler:</th>
+            <th scope="col">{{psychologicalmedicine}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Psikiyatrik Tanısı ICD Kodu:</th>
+            <th scope="col">{{icdcode}}</th>
+          </tr>
+          <tr>
+            <th scope="col">Uyarılar :</th>
+            <th scope="col">{{warnings}}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    {{/if}}
+  </li>
+</template>
+<template name="yontem">
+  <li class="black {{selected}}" >
+    {{#if selected}}
+    <table class="table ">
+      <tr>
+        <th scope="col">Tedavi Modu:</th>
+        <th scope="col">{{treatmentmode}}</th>
+      </tr>
+      <tr>
+        <th scope="col">Tedavi Türü:</th>
+        <th scope="col">{{treatmenttype}}</th>
+      </tr>
+      <tr>
+        <th scope="col">Sinyal Türü:</th>
+        <th scope="col">{{signaltype}}</th>
+      </tr>
+      <tr>
+        <th scope="col">Seans Sayısı:</th>
+        <th scope="col">{{sessionsnumber}}</th>
+      </tr>
+      <tr>
+        <th scope="col">Montaj Bölgesi:</th>
+        <th scope="col">{{montage}}</th>
+      </tr>
+      <tr>
+        <th scope="col">Ölçek Adı:</th>
+        <th scope="col">{{measurename}}</th>
+      </tr>
+    </table>
+    <div class="card-footer " style="padding-top:-200px;" >
+        <div class="row">
+          <h3 class="col-7" style="margin-left:-5px;"><strong>Tedavi Tamamlandı mı ?</strong></h3>
+          <button type="button" id="completed"  value="Tamamlandı" style="margin-top: 15px; margin-left:20px; background-color:#00bd0694; border-color:#00bd0694;" class=" col-1 btn " ><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button   type="button" id="notcompleted" value="Tamamlanmadı" style="margin-top: 15px;  margin-left:10px; " class="col-1 btn btn-danger" ><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        </div>
+        <br>
+        <div class="row">
+            <a    href="./akimsuregrafigi">
+              <button class= "btn btn-primary" style=" margin-left:25px; background-color:#f69200b8; font-size:15px;">SİNYAL ŞİDDETİ GRAFİĞİ</button>
+            </a>
+            <a   href="./seanssuregrafigi">
+              <button class= "btn btn-primary" style=" margin-left: 15px; background-color: #f69200b8; font-size:15px;" >SEANS SÜRESİ GRAFİĞİ</button>
+            </a>
+        </div>
+
+    {{/if}}
+  </li>
+</template>
+<template name="hamilton">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div class="row">
+      <label  class="col-md-5 labelolcek col-form-label" for="vehicle1"><strong> Hamilton Depresyon Değerlendirme </strong></label>
+      <div class="form-group has-default col-2">
+        <input type="checkbox" id="hamilton" name="hamilton" style="margin-top:13px;" value="HAMİLTON DEPRESYON DEĞERLENDİRME ÖLÇEĞİ">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Uygulanan Tedavi Tarihi:</strong><i class="zorunluAlan">*</i></label>
+      <div class="dogum-tarihi col-md-6 ">
+        <input type="date" id="hamiltontreatmenttime" name="hamiltontreatmenttime">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Ölçek Puanı:</strong> <i class="zorunluAlan">*</i></label>
+      <div class="form-group has-default col-2">
+        <input type="text" name="meausurescore" id="hamiltonmeausurescore" class="form-control"  maxlength="3">
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="col-md-8">
+        <button class= "hamiltonbtn btn btn-primary"  style="font-size:15px; background-color:#00bd0694;" >Kaydet</button>
+      </div>
+      <a class="nav-link col-5" href="./hamiltongrafik">
+        <div class=" black {{selected}}" >
+          <button class= "btn btn-primary " style="font-size:15px; margin-left:15px; background-color: #f69200b8;" >HAMİLTON RAPORU</button>
+        </div>
+      </a>
+    </div>
+    {{/if}}
+  </div>
+</template>
+<template name="montreal">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div class="row">
+      <label  class="col-md-5 labelolcek col-form-label" for="vehicle1"><strong>Montreal Bilişsel Değerlendirme </strong></label>
+      <div class="form-group has-default col-2">
+        <input type="checkbox" id="montreal" name="montreal" style="margin-top:13px;" value="MONTREAL BİLİŞSEL DEĞERLENDİRME ÖLÇEĞİ">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Uygulanan Tedavi Tarihi:</strong><i class="zorunluAlan">*</i></label>
+      <div class="dogum-tarihi col-md-6 ">
+        <input type="date" id="montrealtreatmenttime" name="birthday">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Ölçek Puanı:</strong> <i class="zorunluAlan">*</i></label>
+      <div class="form-group has-default col-2">
+        <input type="text" name="montrealmeasurescore" id="montrealmeasurescore" class="form-control"  maxlength="3">
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="col-md-8">
+        <button class= "montrealbtn btn btn-primary" style="font-size:15px; background-color:#00bd0694;">Kaydet</button>
+      </div>
+      <a class="nav-link col-5" href="./montrealgrafik">
+        <div class=" black {{selected}}" >
+          <button class= "btn btn-primary" style="font-size:15px; margin-left:15px; background-color: #f69200b8;" >MONTREAL RAPORU</button>
+        </div>
+      </a>
+    </div>
+    {{/if}}
+  </div>
+</template>
+<template name="montgomery">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div class="row">
+      <label  class="col-md-6 labelolcek col-form-label" for="vehicle1"><strong> Montgomery Depresyon Değerlendirme </strong></label>
+      <div class="form-group has-default col-2">
+        <input type="checkbox" id="montgomery" name="montgomery" style="margin-top:13px;" value="MONTGOMERY DEPRESYON DEĞERLENDİRME ÖLÇEĞİ">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Uygulanan Tedavi Tarihi:</strong><i class="zorunluAlan">*</i></label>
+      <div class="dogum-tarihi col-md-6 ">
+        <input type="date" id="montgomerytreatmenttime" name="birthday">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Ölçek Puanı:</strong> <i class="zorunluAlan">*</i></label>
+      <div class="form-group has-default col-2">
+        <input type="text" name="montgomerymeasurescore" id="montgomerymeasurescore" class="form-control"  maxlength="3">
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="col-md-8">
+        <button class= "montgomerybtn btn btn-primary"  style="font-size:15px; background-color:#00bd0694;">Kaydet</button>
+      </div>
+      <a class="nav-link col-5" href="./montgomerygrafik">
+        <div class=" black {{selected}}" >
+          <button class= "btn btn-primary" style="font-size:14px; background-color: #f69200b8;">MONTGOMERY RAPORU</button>
+        </div>
+      </a>
+    </div>
+    {{/if}}
+  </div>
+</template>
+<template name="beck">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div class="row">
+      <label  class="col-md-5 labelolcek col-form-label" for="vehicle1"><strong> Beck Depresyon Değerlendirme </strong></label>
+      <div class="form-group has-default col-2">
+        <input type="checkbox" id="beck" name="beck" style="margin-top:13px;" value="BECK DEPRESYON DEĞERLENDİRME ÖLÇEĞİ">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Uygulanan Tedavi Tarihi:</strong><i class="zorunluAlan">*</i></label>
+      <div class="dogum-tarihi col-md-6 ">
+        <input type="date" id="becktreatmenttime" name="birthday">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-md-4 labelolcek col-form-label"><strong>Ölçek Puanı:</strong> <i class="zorunluAlan">*</i></label>
+      <div class="form-group has-default col-2">
+        <input type="text" name="beckmeasurescore" id="beckmeasurescore" class="form-control"  maxlength="3">
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="col-md-8">
+        <button class= "beckbtn btn btn-primary" style="font-size:15px; background-color:#00bd0694;">Kaydet</button>
+      </div>
+      <a class="nav-link col-5" href="./beckgrafik">
+        <div class=" black {{selected}}" >
+          <button class= "btn btn-primary" style=" font-size:15px; background-color:#f69200b8; width:21rem;">BECK RAPORU</button>
+        </div>
+      </a>
+    </div>
+    {{/if}}
+  </div>
+</template>
+<template name="duzenle">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<form  action="bilgiler.html" method="post">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <tr>
+          <th scope="col">Ad:</th>
+          <th scope="col">	<input type="text" name="name" id="name" class="form-control" value="{{name}}" maxlength="140"></th>
+        </tr>
+        <tr>
+          <th scope="col">Soyad:</th>
+          <th scope="col">	<input type="text" class="form-control" id="surname" value="{{surname}}" maxlength="140"></th>
+        </tr>
+        <tr>
+          <th scope="col">Cinsiyet:</th>
+          <th scope="col"><select class="custom-select" id="gender" >
+            <option selected >{{gender}}</option>
+            <option value="Erkek">Erkek</option>
+            <option value="Kadın">Kadın</option>
+            <option value="Diğer">Diğer</option>
+          </select></th>
+        </tr>
+        <tr>
+          <th scope="col">Kangrubu:</th>
+          <th scope="col">	<select class="custom-select mr-sm-2" id="bloodgroup">
+              <option selected>{{bloodgroup}}</option>
+              <option value="AB Rh+">AB Rh+</option>
+              <option value="AB Rh-">AB Rh-</option>
+              <option value="A Rh+">A Rh+</option>
+              <option value="A Rh-">A Rh-</option>
+              <option value="B Rh+">B Rh+</option>
+              <option value="B Rh-">B Rh-</option>
+              <option value="O Rh+">O Rh+</option>
+            </select></th>
+        </tr>
+        <tr>
+          <th scope="col">Doğum Tarihi:</th>
+          <th scope="col"><input type="date" id="birthday" name="birthday" value="{{birthday}}"></th>
+        </tr>
+        <tr>
+          <th scope="col">Cep Telefonu:</th>
+          <th scope="col">	<input type="number"  id="phonenumber" value="{{phonenumber}}" class="form-control"  maxlength="30"></th>
+        </tr>
+        <tr>
+          <th scope="col">E-mail:</th>
+          <th scope="col">	<input type="email" class="form-control" value="{{email}}" id="email"></th>
+        </tr>
+        <tr>
+          <th scope="col">Hasta Yakın Adı Soyadı:</th>
+          <th scope="col">	<input type="text" class="form-control" value={{closename}} id="closename"></th>
+        </tr>
+        <tr>
+          <th scope="col">Hasta Yakın Telefonu:</th>
+          <th scope="col"><input type="number"  id="closephonenumber" value="{{closephonenumber}}" class="form-control"  maxlength="30"></th>
+        </tr>
+        <tr>
+          <th scope="col">Alerjiler:</th>
+          <th scope="col">
+            <input type="text" class=" form-control" id="allergies" value="{{allergies}}"  >
+          </th>
+        </tr>
+        <tr>
+          <th scope="col">Komorbit Rahatsızlıkları: </th>
+          <th scope="col">
+              <input type="text" class="form-control" id="comorbid" value="{{comorbid}}" >
+                </th>
+        </tr>
+        <tr>
+          <th scope="col">Komorbid Rahatsızlıklar İçin Kullanılan Etken Maddeler:</th>
+          <th scope="col">
+              <input type="text" class="form-control" id="comorbidfactormedicine" value="{{comorbidfactormedicine}}" >
+              </th>
+        </tr>
+        <tr>
+          <th scope="col">Psikolojik Tedaviler İçin Kullanılan Etken Maddeler:</th>
+          <th scope="col">
+                  <ul id="psychologicalmedicinedemo" >
+                  </ul>
+              <input type="text" class="form-control" id="psychologicalmedicine" value="{{psychologicalmedicine}}" >
+            </th>
+        </tr>
+        <tr>
+          <th scope="col">Psikiyatrik Tanısı ICD Kodu:</th>
+          <th scope="col"><input type="number" class="form-control" value="{{icdcode}}" id="icdcode" ></th>
+        </tr>
+        <tr>
+          <th scope="col">Uyarılar :</th>
+          <th scope="col">	<textarea class="form-control" value="{{warnings}}"  rows="3" id="warnings"  ></textarea></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="save" data-dismiss="modal" style=" font-size:15px; background-color:#00bd0694;">Kaydet</button>
+  <button type="button" class="btn btn-default" style="font-size:15px; background-color: #f44336;" data-dismiss="modal">Çıkış</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="bd-example" style="padding-bottom: 24px;">
+<button type="button" id="edit" class="hasta btn btn-primary btn-lg" style="font-size:15px; margin-left:51.5rem; background-color:#1055f4;" data-toggle="modal" data-target="#myModal">
+Düzenle
+</button>
+</div>
+    {{/if}}
+  </div>
+</template>
+<template name="duzenle2">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<form  action="bilgiler.html" method="post">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <tr>
+          <th scope="col">Tedavi Modu:</th>
+          <th scope="col">  <select class="custom-select " id="treatmentmode" value="{{treatmentmode}}">
+              <option value="Aktif Mod">Aktif Mod</option>
+              <option value="Sham Mod">Sham Mod</option>
+            </select></th>
+        </tr>
+        <tr>
+          <th scope="col">Tedavi Türü:</th>
+          <th scope="col" >  <select class="custom-select " id="treatmenttype" value="{{treatmenttype}}">
+              <option value="Depresyon">Depresyon</option>
+            </select></th>
+        </tr>
+        <tr>
+          <th scope="col">Sinyal Türü:</th>
+          <th scope="col">  <select class="custom-select " id="signaltype" value="{{signaltype}}">
+              <option value="TDCS-Doğru Akım">TDCS-Doğru Akım</option>
+            </select></th>
+        </tr>
+        <tr>
+          <th scope="col">Seans Sayısı:</th>
+          <th scope="col">  <input type="text" name="hastaName" id="sessionsnumber" value="{{sessionsnumber}}" class="form-control"  maxlength="3"></th>
+        </tr>
+        <tr>
+          <th scope="col">Montaj Bölgesi:</th>
+          <th scope="col">  <input type="text" name="montaj" id="montage" value="{{montage}}" class="form-control" ></th>
+        </tr>
+        <tr>
+          <th scope="col">Ölçek Adı:</th>
+          <th scope="col"><input type="text" name="measurename" id="measurename" class="form-control" value="{{measurename}}" maxlength="3"></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="save" data-dismiss="modal" style="font-size:15px; background-color:#00bd0694;">Kaydet</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal" style=" font-size:15px; background-color: #f44336;" > Çıkış</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="bd-example" style="padding-bottom: 24px;">
+<button type="button" id="edit" class="hasta btn btn-primary btn-lg" data-toggle="modal" style="font-size:15px; margin-top: -70px; margin-left:53rem; background-color:#1055f4; " data-target="#myModal1">
+Düzenle
+</button>
+</div>
+    {{/if}}
+  </div>
+</template>

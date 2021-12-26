@@ -1,0 +1,27 @@
+<template name="signup">
+	{{#if currentUser}}
+	<h3 class="white">Giriş Yaptınız <a href="/">home</a></h3>
+	{{else}}
+	<div class="wrapper-full-page">
+		<div class="page-header login-page " filter-color="black" >
+			<div class="col-4">
+			</div>
+			<form class="form-signup card col-4 " id="register-form"  style="height26rem;">
+				<div class="card-header card-header-danger text-center">
+					<h2 class="form-signin-heading">Hesap Oluştur</h2>
+				</div>
+				<label style="height:50px; font-size:23px;" for="username" class="sr-only">Kullanıcı adı</label>
+				<input style="height:50px; font-size:23px;" type="text" name="username" id="username" class="form-control" placeholder="Kullanıcı adı">
+				<label  for="email" class="sr-only">Email Adresi</label>
+				<input style="height:50px; font-size:23px;" type="email" name="email" id="email" class="form-control" placeholder="Email Adresi">
+				<label for="password" class="sr-only">Şifre</label>
+				<input style="height:50px; font-size:23px;" type="password" name="password" id="password" class="form-control" placeholder="Şifre">
+				<label for="password2" class="sr-only">Şifre tekrarı</label>
+				<input style="height:50px; font-size:23px;" type="password" name="password2" id="password2" class="form-control" placeholder="Şifre tekrarı">
+				<button style="height:50px; font-size:23px; background-color: #00bd0694; color:#000000;" type="submit" id="login-btn" class="btn btn-lg btn-block">GİRİŞ</button>
+				<p style="height:50px; font-size:23px; margin-top:10px; margin-left:10rem;"><a style="color:#000;" href="/">Giriş Ekranına Geri Dön</a></p>
+			</form>
+		</div>
+	</div>
+	{{/if}}
+</template>

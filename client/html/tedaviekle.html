@@ -1,0 +1,176 @@
+<template name="tedaviekle">
+  <div class="sidebar" data-color="orange" data-background-color="black" data-image="../assets/img/mkside4.jpg">
+    <div class="sidebar-wrapper">
+      <div class="logo text-center">
+        <img src="./img/logo.png" class="img-fluid" style="padding: 5px;" />
+      </div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/hastakayit">
+            <p style="font-size:18px;"> Hasta Kayıt</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/hastaarama">
+            <p style="font-size:18px;"> Hasta Bilgileri  </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link link-purple logout" href="#" id="logout-link"><i class="fa fa-sign-out">   </i>ÇIKIŞ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {{#EasySearch.Each index=index }}
+  {{> tedaviekle2}}
+  {{/EasySearch.Each}}
+</template>
+<template name="tedaviekle2">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <div class="row" >
+      <div class="col-3"></div>
+      <div class="col-9">
+        <div class="flip flip-vertical">
+          <div class="front" style="background-image: url('./img/tdcs7.jpg');"  >
+            <h2 class="text-shadow">TEDAVİ</h2>
+          </div>
+          <div class="back">
+            <h2>Depresyon Tedavisi Protokol 1</h2>
+            <h3>Günde 1 defa 20 Dakika</h3>
+            <h3>Tedavinin şiddeti 2 mA</h3>
+            <h3>Depresyon tedavisinde uygun görülen elektrod yerleşimi 10 20 EEG sistemine göre (F3) Anod,  (FP2) Katod elektrod montaj bölgesidir. </h3>
+          </div>
+        </div>
+        <div class="flip flip-vertical">
+          <div class="front"  style="background-image: url('./img/olcüm.jpg');" >
+            <h2 class="text-shadow2">DEPRESYON ÖLÇEK ADI</h2>
+          </div>
+          <div class="back" style="color:#ffffff;">
+            <h3><a style="color:#ffffff;" href="./pdf/bdi.pdf" target="_blank"> BECK DEPRESYON ENVANTERİ </a> </h3>
+            <br>
+            <br>
+            <h3>  <a style="color:#ffffff;"  href="./pdf/hamilton_depresyon_degerlendirme.pdf" target="_blank" > HAMİLTON DEPRESYON ÖLÇEĞİ</a></h3>
+            <br>
+            <h3>  <a style="color:#ffffff;"  href="./pdf/Montreal.pdf" target="_blank"> MONTREAL BİLİŞSEL DEĞERLENDİRME</a></h3>
+            <br>
+            <h3>  <a style="color:#ffffff;"  href="./pdf/montgomery.pdf" target="_blank">MONTGOMERY–ASBERG DEPRESYON DEĞERLENDİRME</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="card col-6">
+        <div class="card-header card-header-info card-header-icon">
+          <div class="card-icon">
+            <i class="fa fa-medkit" aria-hidden="true"></i>
+          </div>
+          <h4 class="card-title"><strong>Hastaya Uygulanan Tedavi Bilgileri</strong></h4>
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <label class="col-md-4 col-form-label ">Tedavi Modu:<i class="zorunluAlan">*</i></label>
+            <div class="col-md-6">
+              <select class="custom-select " id="treatmentmode">
+                <option value="Aktif Mod">Aktif Mod</option>
+                <option value="Sham Mod">Sham Mod</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label ">Tedavi Türü:<i class="zorunluAlan">*</i></label>
+            <div class="col-md-6">
+              <select class="custom-select " id="treatmenttype">
+                <option value="Depresyon">Depresyon</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label "> Sinyal Türü:<i class="zorunluAlan">*</i></label>
+            <div class="col-md-6">
+              <select class="custom-select " id="signaltype">
+                <option value="TDCS-Doğru Akım">TDCS-Doğru Akım</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label">Hedeflenen Seans Sayısı: <i class="zorunluAlan">*</i></label>
+            <div class="form-group has-default col-1">
+              <input type="text" name="hastaName" id="sessionsnumber" class="form-control"  maxlength="3">
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label">Montaj Bölgesi: <i class="zorunluAlan">*</i></label>
+            <div class="form-group has-default col-2">
+              <input type="text" name="montaj" id="montage" class="form-control" >
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class=" col-8" >
+
+            </a>
+            <div class="col-md-2">
+              <button class= "treatmentbtn btn" style="background-color:#00bd0694;  border-color:#00bd0694;" >Kaydet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="card col-6">
+        <div class="card-header row card-header-info card-header-icon">
+          <div class="card-icon">
+            <i class="fa fa-medkit" aria-hidden="true"></i>
+          </div>
+          <div class="col-8">
+            <h4 class="card-title"><strong>Seans Bilgileri</strong></h4>
+          </div>
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <label class="col-md-4 col-form-label">Sinyal Şiddeti: <i class="zorunluAlan">*</i></label>
+            <div class="form-group has-default col-2">
+              <input type="number" name="hastaName" id="signalcurrent" class="form-control"  maxlength="1" placeholder="0-4 mA">
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label">Uygulanacak Seans Süresi: <i class="zorunluAlan">*</i></label>
+            <div class="form-group has-default col-2">
+              <input type="text" name="hastaName" id="sessionstime" class="form-control"  maxlength="2" placeholder="0-60 dk">
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4 col-form-label">Seans Tarihi: <i class="zorunluAlan">*</i></label>
+            <div class="form-group has-default col-1">
+              <input type="date" name="seanstarihi" id="sessionsdate"  maxlength="3">
+            </div>
+          </div>
+          <div class="form-groupilac row">
+            <label class=" col-md-4 col-form-label ">Notlar</label>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-10">
+                  <ul id="warnings2demo">
+                  </ul>
+                </div>
+              </div>
+                <textarea class="form-control" rows="3" id="warnings2" onfocus="this.value=''"></textarea>
+
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="nav-link col-8" href="./hastaarama">
+              <button class= "btn " style="background-color: #f69200b8;" >Geri</button>
+            </a>
+            <div class="col-md-2">
+              <button class= "sessionsinfobtn btn" style="background-color:#00bd0694; border-color:#00bd0694;">Kaydet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</template>

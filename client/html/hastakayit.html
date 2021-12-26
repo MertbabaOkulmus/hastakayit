@@ -1,0 +1,250 @@
+<template name="hastaKayit">
+	{{#if currentUser}}
+	<div class="wrapper " style="font-size:30px;">
+		<div class="sidebar" data-color="orange" data-background-color="black" data-image="../assets/img/mkside4.jpg">
+			<div class="sidebar-wrapper">
+				<div class="logo text-center">
+					<img src="./img/logo.png" class="img-fluid" style="padding: 5px;" />
+				</div>
+				<ul class="nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="/hastakayit" >
+							<p style="font-size:18px;"> Hasta Kayıt</p>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="/hastaarama">
+							<p  style="font-size:18px;"> Hasta Bilgileri  </p>
+						</a>
+					</li>
+
+					<li class="nav-item ">
+						<a class="nav-link link-purple logout" href="#" id="logout-link" style="font-size:18px;"><i class="fa fa-sign-out">   </i>ÇIKIŞ</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<div id="hastaForm-wrap"  >	​
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row" style="justify-content: center;">
+							<div class="col-2">
+							</div>
+							<form class="hasta-post form-horizontal col-md-6 ">
+								<div class="card">
+									<div class="card-header card-header-warning card-header-icon">
+										<div class="card-icon">
+											<i class="fa fa-user" aria-hidden="true"></i>
+										</div>
+										<h4 class="card-title"><strong>Kişisel Bilgiler</strong></h4>
+									</div>
+									<div class="card-body hasta"  >
+										<div class="row">
+											<label class="col-md-4 col-form-label">Tc:</label>
+											<div class="col-md-3">
+												<div class="form-group has-default">
+													<input type="number" name="hastaTc" id="tcno" class="form-control"  oninput=" if(value.length>11)value= value.slice(0,11)" >
+												</div>
+											</div>
+											<i class="mdi mdi-information" title="Eğer türkiye vatandaşı değilseniz pasaport numarası ile kayıt yapınız. Tc yada pasaport numarasından birisinin doldurulması zorunludur."></i>
+											<label class="col-md-2  IdNumber">ID Number:</label>
+											<div class="col-md-2">
+												<div class="form-group has-default">
+													<input type="number" name="hastaId" id="idNumber" class="form-control Idinput"  oninput=" if(value.length>8)value= value.slice(0,8)" >
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<label class="col-md-4 col-form-label">Ad: <i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="text" name="name" id="name" class="form-control"  maxlength="140">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Soyad:<i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="text" class="form-control" id="surname"  maxlength="140">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label ">Cinsiyet: <i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<select class="custom-select" id="gender">
+													<option selected>Seçiniz..</option>
+													<option value="Erkek">Erkek</option>
+													<option value="Kadın">Kadın</option>
+													<option value="Diğer">Diğer</option>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label ">Kan Grubu:</label>
+											<div class="col-md-6">
+												<select class="custom-select mr-sm-2" id="bloodgroup">
+													<option selected>Seçiniz..</option>
+													<option value="AB Rh+">AB Rh+</option>
+													<option value="AB Rh-">AB Rh-</option>
+													<option value="A Rh+">A Rh+</option>
+													<option value="A Rh-">A Rh-</option>
+													<option value="B Rh+">B Rh+</option>
+													<option value="B Rh-">B Rh-</option>
+													<option value="O Rh+">O Rh+</option>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Doğum Tarihi:<i class="zorunluAlan">*</i></label>
+											<div class="dogum-tarihi col-md-6 ">
+												<input type="date" id="birthday" name="birthday">
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Cep Telefonu:<i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="number"  id="phonenumber" class="form-control"  maxlength="30">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Email:</label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="email" class="form-control" id="email">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Hasta Yakın Adı Soyadı:<i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="text" class="form-control" id="closename">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Hasta Yakın Numarası:<i class="zorunluAlan">*</i></label>
+											<div class="col-md-6">
+												<div class="form-group has-default">
+													<input type="number"  id="closephonenumber" class="form-control"  maxlength="30">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card ">
+									<div class="card-header card-header-info card-header-icon">
+										<div class="card-icon">
+											<i class="fa fa-medkit" aria-hidden="true"></i>
+										</div>
+										<h4 class="card-title"><strong>Sağlık Bilgileri</strong></h4>
+									</div>
+									<div class="card-body ">
+										<div class="form-groupilac row">
+											<label class="allergies col-md-4 col-form-label " for="allergies">Bilinen Alerjiler:</label>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-10">
+														<ul id="allergiesdemo">
+														</ul>
+													</div>
+												</div>
+												<input type="text" class=" form-control" id="allergies" onfocus="this.value=''">
+												<button class="allergiesbtn">+</button>
+											</div>
+										</div>
+										<div class="form-groupilac row">
+											<label class=" col-md-4 col-form-label ">Komorbid Hastalıklar:</label>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-10">
+														<ul id="comorbiddemo">
+														</ul>
+													</div>
+												</div>
+												<input type="text" class="form-control" id="comorbid" onfocus="this.value=''">
+												<button class="comorbidbtn">+</button>
+											</div>
+										</div>
+										<div class="form-groupilac row">
+											<label class=" col-md-4 col-form-label ">Komorbid Hastalıklar İçin Kullanılan Etken Maddeler: </label>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-10">
+														<ul id="comorbidfactormedicinedemo">
+														</ul>
+													</div>
+												</div>
+												<input type="text" class="form-control" id="comorbidfactormedicine" onfocus="this.value=''">
+												<button class="comorbidfactormedicinebtn">+</button>
+											</div>
+										</div>
+										<div class="form-groupilac row">
+											<label class=" col-md-4 col-form-label ">Psikiyatrik Tedaviler İçin Kullanılan Etken Maddeler: </label>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-10">
+														<ul id="psychologicalmedicinedemo">
+														</ul>
+													</div>
+												</div>
+												<input type="text" class="form-control" id="psychologicalmedicine" onfocus="this.value=''">
+												<button class="psychologicalmedicinebtn">+</button>
+											</div>
+										</div>
+										
+										<div class="row">
+											<label class="col-md-4 col-form-label ">Psikiyatrik Tanısı ICD Kodu:</label>
+											<div class="col-md-6">
+												<select class="custom-select mr-sm-2" id="icdcode">
+													<option selected>Seçiniz..</option>
+													<option value="F30-Manik Nöbet"> F30-Manik Nöbet</option>
+													<option value="F31-Bipolar Duygu Bozukluğu"> F31-Bipolar Duygu Bozukluğu</option>
+													<option value="F32-Depresif Nöbet">F32-Depresif Nöbet</option>
+													<option value="F33-Yinelenen Depresif Bozukluk">F33-Yinelenen Depresif Bozukluk</option>
+													<option value="F34-İnatçı Duygu Durum Bozuklukları"> F34-İnatçı Duygu Durum Bozuklukları</option>
+													<option value="F38-Duygu Durum Bozuklukları">F38-Duygu Durum Bozuklukları</option>
+													<option value="F39-Duygu Durum Bozuklukları Tanımlanmamış"> F39-Duygu Durum Bozuklukları Tanımlanmamış</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-4 col-form-label">Uyarılar:</label>
+											<div class="col-md-6">
+												<div class="form-group">
+													<textarea class="form-control" rows="3" id="warnings" onfocus="this.value=''"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer">
+										<div class="row ">
+											<div class="col-2">
+												<button id= "kydtbtn"  class=" kydtbtn btn" style="margin-left:50rem; background-color:#51fce4d1; font-size:15px;">Kaydet</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	{{/if}}
+</template>

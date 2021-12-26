@@ -1,0 +1,59 @@
+<template name= "seanssuregrafigi">
+  {{#if currentUser}}
+  <div class="sidebar" data-color="orange" data-background-color="black" data-image="../assets/img/mkside4.jpg">
+    <div class="sidebar-wrapper">
+      <div class="logo text-center">
+        <img src="./img/logo.png" class="img-fluid" style="padding: 5px;" />
+      </div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/hastakayit">
+            <p style="font-size:18px;"> Hasta Kayıt</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/hastaarama">
+            <p style="font-size:18px;"> Hasta Bilgileri  </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link link-purple logout" style="font-size:18px;" href="#" id="logout-link"><i class="fa fa-sign-out">   </i>ÇIKIŞ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-4"></div>
+    <div class="card col-6  ">
+      <h2 style="background-color: #facf96;
+      background-image: linear-gradient(315deg, #facf96 0%,#db6f02 74%);" scope="col"><strong style="margin-left:12rem;"> Sinyal Şiddeti ve Seans Tarihi Grafiği</strong></h2>
+      <br>
+      <br>
+      {{#EasySearch.Each index=index }}
+      {{>seanssuregrafig1}}
+      {{/EasySearch.Each}}
+
+      <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-4">
+          <h4 class="ylabel" ><strong>Tadavi Uygulanan Seans Tarihi</strong></h4>
+        </div>
+      </div>
+      <a class="nav-link col-2" href="./bilgiler">
+        <button class="btn " style=" font-size:10px; background-color: #f69200b8;" >Geri</button>
+      </a>
+    </div>
+  </div>
+  {{/if}}
+</template>
+<template name="seanssuregrafig1">
+  <div class="black {{selected}}" >
+    {{#if selected}}
+    <br>
+    <div class="row">
+      <h4><strong>Seans Süresi (Dakika) </strong></h4>
+    </div>
+    <canvas id="myChart" width="600" height="450"></canvas>
+    {{/if}}
+  </div>
+</template>
