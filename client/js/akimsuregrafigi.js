@@ -17,7 +17,7 @@ Template.akimsuregrafigi2.helpers({
 		return Session.equals("selectedpatient", this.__originalId) ? "selected" : '';
 	}
 });
-Template.akimsuregrafigi1.onCreated(function() {
+Template.akimsuregrafigi.onCreated(function() {
 	chart1 = this.subscribe('chart1');
 });
 /*global drawchart */
@@ -41,7 +41,7 @@ drawchart = function(datavalues,datalabels){
 	var ctx = $("#myChart").get(0).getContext("2d");
 	new Chart(ctx).Bar(data);
 };
-Template.akimsuregrafigi1.rendered = function(){
+Template.akimsuregrafigi.rendered = function(){
 
 	Tracker.autorun(function () {
 		if (chart1.ready()) {
